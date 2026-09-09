@@ -15,6 +15,21 @@ Tools included:
 | **Mock Interview** | Generates role-specific questions and gives feedback on each of your answers. |
 | **History** | Every run is saved in your browser so you can revisit and compare past results. |
 
+## ▶ Prefer no install? Use it in your browser
+
+**<https://haonguyenbiotechms.github.io/align/>** — the hosted version, nothing to download. Same
+tools; it just calls the AI provider from your browser instead of a local server (see
+[Privacy](#privacy)). The steps below are for running it on your own machine.
+
+---
+
+## What it looks like
+
+![Align Resume Analyzer: a match-score ring with verdict, matched-skill tags, skill gaps with learning-resource links, and a rewritten ATS-optimized resume with Download DOCX / PDF buttons](docs/screenshot.png)
+
+*Resume Analyzer output — a 0–100 match score with verdict, matched skills, skill gaps with
+learning resources, and a rewritten resume ready to download as DOCX or PDF.*
+
 ---
 
 ## Get Align onto your computer
