@@ -117,7 +117,7 @@ export default function Sidebar() {
 
       <div className="px-5 pb-5" style={{ borderTop: '1px solid rgba(255,255,255,0.07)', paddingTop: 14 }}>
         <p style={{ color: '#475569', fontSize: 11, lineHeight: 1.5 }}>
-          Runs locally with your own AI API key. Nothing is uploaded.
+          Runs in your browser with your own AI API key. Key and history stay on this device.
         </p>
         <p style={{ color: '#475569', fontSize: 11, marginTop: 10 }}>
           Created by <span style={{ color: '#64748b', fontWeight: 600 }}>haonguyenms</span>

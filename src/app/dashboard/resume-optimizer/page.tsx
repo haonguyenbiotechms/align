@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react'
 import { saveRun } from '@/lib/saveRun'
 import { resourceUrl, type Resource } from '@/lib/resourceUrl'
-import { loadSettings, requestConfig } from '@/lib/settings'
+import { analyzeResume, optimizeResume } from '@/lib/ai/client'
 import { sanitizeResumeHtml } from '@/lib/sanitizeHtml'
 
 type SkillGap = {
@@ -109,18 +109,12 @@ export default function ResumeAnalyzerPage() {
     setOptimizedHtml('')
 
     try {
-      const config = requestConfig(loadSettings())
-      const [analysisRes, optimizeRes] = await Promise.all([
-        fetch('/api/resume-analyze', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ jobDescription, resume, config }) }),
-        fetch('/api/resume-optimizer', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ jobDescription, resume, config }) }),
+      const [analysisData, optimizeHtml] = await Promise.all([
+        analyzeResume(jobDescription, resume),
+        optimizeResume(jobDescription, resume),
       ])
 
-      if (!analysisRes.ok) throw new Error((await analysisRes.json().catch(() => null))?.error || 'Analysis failed.')
-      if (!optimizeRes.ok) throw new Error((await optimizeRes.json().catch(() => null))?.error || 'Optimization failed.')
-
-      const [analysisData, optimizeData] = await Promise.all([analysisRes.json(), optimizeRes.json()])
-
-      const cleanHtml = sanitizeResumeHtml(optimizeData.html || '')
+      const cleanHtml = sanitizeResumeHtml(optimizeHtml || '')
       setAnalysis(analysisData)
       setOptimizedHtml(cleanHtml)
 

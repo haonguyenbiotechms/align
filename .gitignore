@@ -21,6 +21,7 @@ Thumbs.db
 
 # build / deploy
 /build
+/out
 /coverage
 .vercel
 

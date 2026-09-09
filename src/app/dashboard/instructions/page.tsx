@@ -10,10 +10,20 @@ export default function InstructionsPage() {
           One-time setup — connect an AI provider
         </h2>
         <p className="text-sm text-gray-600 leading-relaxed mb-4">
-          Align runs entirely on your computer. It doesn&apos;t come with an AI &mdash; you point it
-          at a provider and give it a key. That key is saved <strong>only in this browser</strong>,
-          sent only to the local Align server on your machine, and never uploaded anywhere else.
-          Open <strong>Settings</strong> in the sidebar and pick one of the paths below.
+          Align doesn&apos;t come with an AI &mdash; you point it at a provider and give it a key.
+          This hosted version runs entirely in your browser: the key is saved{' '}
+          <strong>only in this browser</strong> and sent <strong>straight from here to the provider
+          you choose</strong>, never through a server we run. Open <strong>Settings</strong> in the
+          sidebar and pick one of the paths below.
+        </p>
+        <p className="text-xs text-gray-500 leading-relaxed mb-4">
+          <strong>Gemini, Ollama, Groq and OpenRouter</strong> allow browser use with no caveats.
+          <strong> OpenAI and Anthropic</strong> label direct-from-browser use as &ldquo;not
+          recommended&rdquo; &mdash; for a solo user with their own key the practical risk is small
+          (details in the notice you saw on first visit). If you&apos;d rather your key not sit in
+          a browser at all, run the <strong>local version</strong> instead:{' '}
+          <span className="font-mono">npm run dev</span> from the project code &mdash; see the
+          README.
         </p>
 
         <p className="text-sm font-medium text-gray-700 mb-2">
@@ -85,10 +95,8 @@ export default function InstructionsPage() {
         </div>
 
         <p className="text-xs text-gray-500 leading-relaxed mt-4">
-          You can change provider or key any time in Settings. Prefer a config file? Copy
-          <span className="font-mono"> .env.example</span> to <span className="font-mono">.env.local</span>
-          and fill in <span className="font-mono">AI_PROVIDER</span> / <span className="font-mono">AI_API_KEY</span> /
-          <span className="font-mono">AI_MODEL</span> &mdash; Settings overrides it when both are present.
+          You can change provider or key any time in Settings, and clear everything from this
+          browser with &ldquo;Clear saved settings&rdquo; there.
         </p>
       </div>
 

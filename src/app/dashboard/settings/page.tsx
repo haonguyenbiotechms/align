@@ -6,9 +6,9 @@ import {
   loadSettings,
   saveSettings,
   clearSettings,
-  requestConfig,
   type StoredSettings,
 } from '@/lib/settings'
+import { testConnection } from '@/lib/ai/client'
 
 const inputStyle: React.CSSProperties = {
   width: '100%',
@@ -66,19 +66,14 @@ export default function SettingsPage() {
     setTesting(true)
     setTestResult(null)
     try {
-      const res = await fetch('/api/ai-test', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ config: requestConfig(s) }),
-      })
-      const data = await res.json()
+      const data = await testConnection(s)
       setTestResult(
         data.ok
-          ? { ok: true, msg: `Connected — ${data.model} replied "${data.sample}"` }
+          ? { ok: true, msg: `Connected — ${data.model} responded.` }
           : { ok: false, msg: data.error || 'Test failed.' },
       )
-    } catch {
-      setTestResult({ ok: false, msg: 'Could not reach the local server.' })
+    } catch (err) {
+      setTestResult({ ok: false, msg: err instanceof Error ? err.message : 'Test failed.' })
     } finally {
       setTesting(false)
     }
@@ -88,9 +83,9 @@ export default function SettingsPage() {
     <div className="max-w-2xl">
       <h1 className="text-2xl font-bold text-gray-900 mb-1">Settings</h1>
       <p className="text-sm text-gray-600 mb-6">
-        Align runs locally and calls the AI provider <em>you</em> choose, with <em>your</em> API
-        key. The key is stored only in this browser and sent only to your local server, which
-        forwards it to the provider. Nothing is uploaded anywhere else.
+        Align calls the AI provider <em>you</em> choose, with <em>your</em> API key. The key is
+        stored only in this browser and sent straight from here to that provider — it never passes
+        through any server we run. See the note on the Instructions page about browser use.
       </p>
 
       <div className="rounded-xl border border-gray-200 bg-white p-5 space-y-5">

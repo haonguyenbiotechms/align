@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { saveRun } from '@/lib/saveRun'
-import { loadSettings, requestConfig } from '@/lib/settings'
+import { findSkillGaps } from '@/lib/ai/client'
 
 type Gap = { skill: string; importance: 'required' | 'preferred'; jdEvidence: string; note: string }
 type Partial = { skill: string; note: string }
@@ -24,13 +24,7 @@ export default function SkillGapFinderPage() {
     setError(null)
     setResult(null)
     try {
-      const res = await fetch('/api/skill-gap', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ jobDescription, background, config: requestConfig(loadSettings()) }),
-      })
-      if (!res.ok) throw new Error((await res.json().catch(() => null))?.error || 'Request failed.')
-      const data: Result = await res.json()
+      const data: Result = await findSkillGaps(jobDescription, background)
       setResult(data)
       const date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
       const firstLine = jobDescription.split('\n').find((l) => l.trim())?.trim().slice(0, 45) || 'Skill Gap'

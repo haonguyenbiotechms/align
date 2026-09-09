@@ -1,7 +1,17 @@
 # Align — Product Requirements
 
-**Type:** Free, open-source, non-profit tool. No paid tiers, no hosted service, no data collection.
+**Type:** Free, open-source, non-profit tool. No paid tiers, no data collection.
 **Status:** Working. Actively maintained.
+
+**Two builds of the same app:**
+- **`main` — local version.** Runs on the user's machine (`npm run dev`). AI calls go through a
+  small local server, so OpenAI/Anthropic keys are used without their "browser use" caveat.
+- **`web` — hosted version (this branch).** Static export deployed to GitHub Pages; no server. AI
+  calls go straight from the browser to the chosen provider. A one-time in-app notice explains
+  the trade-off and lets the user accept it or switch to the local version. Gemini / Ollama /
+  Groq / OpenRouter have no such caveat.
+
+Both keep all data in the browser and share the same tools, prompts, and security model.
 
 ---
 

@@ -2,12 +2,7 @@
 
 import { useRef, useState } from 'react'
 import { saveRun } from '@/lib/saveRun'
-import { loadSettings, requestConfig } from '@/lib/settings'
-
-async function readError(res: Response) {
-  const data = await res.json().catch(() => null)
-  return new Error(data?.error || `Request failed (${res.status})`)
-}
+import { mockQuestions, mockFeedback } from '@/lib/ai/client'
 
 type Question = { id: number; type: string; question: string }
 type Feedback = {
@@ -42,12 +37,7 @@ export default function MockInterviewPage() {
     setLoadingQuestions(true)
     setError(null)
     try {
-      const res = await fetch('/api/mock-interview/questions', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ jobDescription, resume, config: requestConfig(loadSettings()) }),
-      })
-      if (!res.ok) throw await readError(res)
-      const data = await res.json()
+      const data = await mockQuestions(jobDescription, resume)
       setQuestions(data.questions)
       setAnswers({}); setFeedbacks({})
       savedRef.current = false
@@ -64,12 +54,7 @@ export default function MockInterviewPage() {
     if (!answer?.trim()) return
     setLoadingFeedback((prev) => ({ ...prev, [q.id]: true }))
     try {
-      const res = await fetch('/api/mock-interview/feedback', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: q.question, answer, jobDescription, config: requestConfig(loadSettings()) }),
-      })
-      if (!res.ok) throw await readError(res)
-      const data = await res.json()
+      const data = await mockFeedback(q.question, answer, jobDescription)
       const updatedFeedbacks = { ...feedbacks, [q.id]: data }
       setFeedbacks(updatedFeedbacks)
 
