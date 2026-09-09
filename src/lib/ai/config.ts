@@ -65,29 +65,14 @@ export const DEFAULT_MODEL: Record<Provider, string> = {
 }
 
 /**
- * Build the effective config for a request: the client-supplied config wins;
- * otherwise fall back to server env vars; otherwise null (caller should 400 or
- * fall back to demo data).
+ * Validate the settings the user entered in the browser into a usable config,
+ * or null when nothing is configured (caller falls back to demo data or an error).
  */
 export function resolveConfig(fromClient?: Partial<AiConfig> | null): AiConfig | null {
-  if (fromClient?.provider) {
-    const parsed = aiConfigSchema.safeParse({
-      ...fromClient,
-      model: fromClient.model || DEFAULT_MODEL[fromClient.provider as Provider],
-    })
-    return parsed.success ? parsed.data : null
-  }
-
-  const envProvider = (process.env.AI_PROVIDER ??
-    (process.env.ANTHROPIC_API_KEY ? 'anthropic' : undefined)) as Provider | undefined
-  if (!envProvider) return null
-
+  if (!fromClient?.provider) return null
   const parsed = aiConfigSchema.safeParse({
-    provider: envProvider,
-    apiKey: process.env.AI_API_KEY ?? process.env.ANTHROPIC_API_KEY ?? '',
-    model: process.env.AI_MODEL || DEFAULT_MODEL[envProvider],
-    baseURL: process.env.AI_BASE_URL,
-    temperature: process.env.AI_TEMPERATURE ? Number(process.env.AI_TEMPERATURE) : undefined,
+    ...fromClient,
+    model: fromClient.model || DEFAULT_MODEL[fromClient.provider as Provider],
   })
   return parsed.success ? parsed.data : null
 }

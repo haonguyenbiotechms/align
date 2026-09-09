@@ -159,31 +159,16 @@ user's own model key, and no code execution of model output.
 
 ## 8. Non-goals
 
-- No hosted version, no accounts, no sync across devices.
+- No accounts, no sign-in, no sync across devices.
 - No billing, no subscriptions, no "pro" features.
 - No telemetry or analytics of any kind.
 - Not an ATS emulator or a guarantee of interview outcomes — it is assistive.
-- Not a general web app to be deployed for multiple users.
+- Not multi-tenant software — no shared state, no admin, no server-side user data. Each person's
+  data stays in their own browser, whether they run the local or the hosted build.
 
 ---
 
-## 9. Roadmap
-
-| Item | State |
-|---|---|
-| Resume Analyzer, Optimizer, Mock Interview, History | Done |
-| Multi-provider (Anthropic / OpenAI / Google / OpenAI-compatible) + Settings | Done |
-| Skill Gap Finder | Done |
-| Output sanitization / URL validation | Done |
-| History export / import as JSON | Planned |
-| Swap `html-docx-js` (unmaintained) for a supported DOCX library | Planned |
-| Optional one-click launcher / packaged desktop build | Considered |
-| Native PDF passthrough for providers that accept it (currently text is extracted client-side) | Considered |
-| More native providers (Mistral, Cohere, …) | Easy to add on request |
-
----
-
-## 10. Contributing
+## 9. Contributing
 
 Issues and pull requests welcome. Keep the principles in §2 intact — in particular: local-only,
 provider-neutral, zero telemetry, and no feature that weakens §7. New providers should go through
