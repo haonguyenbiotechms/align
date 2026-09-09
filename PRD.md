@@ -1,7 +1,17 @@
 # Align — Product Requirements
 
-**Type:** Free, open-source, non-profit tool. No paid tiers, no hosted service, no data collection.
+**Type:** Free, open-source, non-profit tool. No paid tiers, no data collection.
 **Status:** Working. Actively maintained.
+
+**Two builds of the same app:**
+- **`main` — local version.** Runs on the user's machine (`npm run dev`). AI calls go through a
+  small local server, so OpenAI/Anthropic keys are used without their "browser use" caveat.
+- **`web` — hosted version (this branch).** Static export deployed to GitHub Pages; no server. AI
+  calls go straight from the browser to the chosen provider. A one-time in-app notice explains
+  the trade-off and lets the user accept it or switch to the local version. Gemini / Ollama /
+  Groq / OpenRouter have no such caveat.
+
+Both keep all data in the browser and share the same tools, prompts, and security model.
 
 ---
 
@@ -149,31 +159,16 @@ user's own model key, and no code execution of model output.
 
 ## 8. Non-goals
 
-- No hosted version, no accounts, no sync across devices.
+- No accounts, no sign-in, no sync across devices.
 - No billing, no subscriptions, no "pro" features.
 - No telemetry or analytics of any kind.
 - Not an ATS emulator or a guarantee of interview outcomes — it is assistive.
-- Not a general web app to be deployed for multiple users.
+- Not multi-tenant software — no shared state, no admin, no server-side user data. Each person's
+  data stays in their own browser, whether they run the local or the hosted build.
 
 ---
 
-## 9. Roadmap
-
-| Item | State |
-|---|---|
-| Resume Analyzer, Optimizer, Mock Interview, History | Done |
-| Multi-provider (Anthropic / OpenAI / Google / OpenAI-compatible) + Settings | Done |
-| Skill Gap Finder | Done |
-| Output sanitization / URL validation | Done |
-| History export / import as JSON | Planned |
-| Swap `html-docx-js` (unmaintained) for a supported DOCX library | Planned |
-| Optional one-click launcher / packaged desktop build | Considered |
-| Native PDF passthrough for providers that accept it (currently text is extracted client-side) | Considered |
-| More native providers (Mistral, Cohere, …) | Easy to add on request |
-
----
-
-## 10. Contributing
+## 9. Contributing
 
 Issues and pull requests welcome. Keep the principles in §2 intact — in particular: local-only,
 provider-neutral, zero telemetry, and no feature that weakens §7. New providers should go through
