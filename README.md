@@ -12,16 +12,28 @@ a local model, or an offline demo). Your key and your history are saved only in 
 Tools: **Resume Analyzer** (+ ATS-optimized rewrite, DOCX/PDF export) · **Skill Gap Finder** ·
 **Mock Interview** · **History** (browser-local).
 
+## ▶ Try it now — <https://haonguyenbiotechms.github.io/align/>
+
+Nothing to install.
+
+---
+
+## What it looks like
+
+![Align Resume Analyzer: a match-score ring with verdict, matched-skill tags, skill gaps with learning-resource links, and a rewritten ATS-optimized resume with Download DOCX / PDF buttons](docs/screenshot.png)
+
+*Resume Analyzer output — a 0–100 match score with verdict, matched skills, skill gaps with
+learning resources, and a rewritten resume ready to download as DOCX or PDF.*
+
 ---
 
 ## Just use it
 
-Open the hosted page (the URL is on the repository's GitHub Pages settings, typically
-`https://<owner>.github.io/align/`). On first visit you'll see a short notice explaining how the
-hosted version handles your key — read it, then either accept and add your key in **Settings**, or
-choose demo mode.
+Open **<https://haonguyenbiotechms.github.io/align/>**. On first visit you'll see a short notice
+explaining how the hosted version handles your key — read it, then either accept and add your key
+in **Settings**, or choose demo mode.
 
-Nothing to install. Everything happens in your tab.
+Everything happens in your browser tab.
 
 ---
 
