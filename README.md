@@ -44,7 +44,7 @@ Open **Settings** in the sidebar. The **Instructions** page has full detail; the
 | I want… | Do this |
 |---|---|
 | **To try it for free, right now** | Settings → tick **Demo mode** → Save. Sample results, no key. |
-| **Free, with real results** | Free key at **<https://aistudio.google.com/apikey>** (no card). Provider **Google — Gemini**, model `gemini-2.0-flash`. |
+| **Free, with real results** | Free key at **<https://aistudio.google.com/apikey>** (no card). Provider **Google — Gemini**, model `gemini-3.6-flash`. |
 | **Free & fully private** | Run **[Ollama](https://ollama.com)** locally (`ollama pull llama3.1`). Provider **OpenAI-compatible / Local**, Base URL `http://localhost:11434/v1`, no key, model `llama3.1`. |
 | **Use Claude or GPT** | Key from **console.anthropic.com** or **platform.openai.com**. See the note below about browser use. |
 

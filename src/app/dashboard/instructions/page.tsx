@@ -60,7 +60,7 @@ export default function InstructionsPage() {
             <ol className="mt-1.5 space-y-1 text-xs text-gray-600 leading-relaxed list-decimal pl-4">
               <li>Go to <span className="font-mono">aistudio.google.com/apikey</span> and sign in with a Google account.</li>
               <li>Click <em>Create API key</em>. Copy the key (starts with <span className="font-mono">AIza…</span>). No credit card needed.</li>
-              <li>In Settings: Provider = <strong>Google &mdash; Gemini</strong>, paste the key, Model = <span className="font-mono">gemini-2.0-flash</span>.</li>
+              <li>In Settings: Provider = <strong>Google &mdash; Gemini</strong>, paste the key, Model = <span className="font-mono">gemini-3.6-flash</span>.</li>
               <li>Save &rarr; Test connection. The free tier is rate-limited but fine for personal use.</li>
             </ol>
           </div>
