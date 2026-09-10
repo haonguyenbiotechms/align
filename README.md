@@ -84,7 +84,7 @@ page walks through every option in detail. The short version:
 | I want… | Do this |
 |---|---|
 | **To try it for free, right now** | Settings → tick **Demo mode** → Save. Every screen works with sample results (not your real data). |
-| **Free, with real results** | Get a free key at **<https://aistudio.google.com/apikey>** (no card). Settings → Provider **Google — Gemini** → paste key → Model `gemini-2.0-flash` → Save → **Test connection**. |
+| **Free, with real results** | Get a free key at **<https://aistudio.google.com/apikey>** (no card). Settings → Provider **Google — Gemini** → paste key → Model `gemini-3.6-flash` → Save → **Test connection**. |
 | **Free & fully private** | Install **[Ollama](https://ollama.com)**, run `ollama pull llama3.1`. Settings → Provider **OpenAI-compatible / Local** → Base URL `http://localhost:11434/v1` → no key → Model `llama3.1`. |
 | **Use Claude or GPT** | Create a key at **console.anthropic.com** or **platform.openai.com** (needs a little billing credit). Settings → matching Provider → paste key → Save → **Test connection**. |
 

@@ -29,7 +29,7 @@ export const PROVIDER_META: Record<Provider, ProviderMeta> = {
     blurb: 'Pay-as-you-go API key. Separate from a Claude.ai Pro subscription.',
     keyUrl: 'https://console.anthropic.com/settings/keys',
     keyLabel: 'console.anthropic.com',
-    models: ['claude-haiku-4-5', 'claude-sonnet-4-5', 'claude-3-5-haiku-latest'],
+    models: ['claude-haiku-4-5', 'claude-sonnet-5', 'claude-opus-5'],
   },
   openai: {
     label: 'OpenAI — GPT',
@@ -43,7 +43,13 @@ export const PROVIDER_META: Record<Provider, ProviderMeta> = {
     blurb: 'Has a real free tier (rate-limited). Best option if you have no budget.',
     keyUrl: 'https://aistudio.google.com/apikey',
     keyLabel: 'aistudio.google.com',
-    models: ['gemini-2.0-flash', 'gemini-2.0-flash-lite', 'gemini-1.5-flash'],
+    // Naming follows Google's <version>-<tier> pattern; check aistudio.google.com
+    // for exactly which are live. The Model field is free-text, so any works.
+    models: [
+      'gemini-3.8-pro', 'gemini-3.8-flash', 'gemini-3.8-flash-lite',
+      'gemini-3.7-pro', 'gemini-3.7-flash', 'gemini-3.7-flash-lite',
+      'gemini-3.6-pro', 'gemini-3.6-flash', 'gemini-3.6-flash-lite',
+    ],
     freeTier: 'Free tier available at aistudio.google.com — no card required.',
   },
   'openai-compatible': {
@@ -60,7 +66,7 @@ export const PROVIDER_META: Record<Provider, ProviderMeta> = {
 export const DEFAULT_MODEL: Record<Provider, string> = {
   anthropic: 'claude-haiku-4-5',
   openai: 'gpt-4o-mini',
-  google: 'gemini-2.0-flash',
+  google: 'gemini-3.6-flash',
   'openai-compatible': 'llama3.1',
 }
 

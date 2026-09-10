@@ -244,7 +244,7 @@ export default function SettingsPage() {
         <ul className="list-disc pl-5 space-y-1">
           <li>
             <strong>Google Gemini</strong> has a genuine free tier — create a key at
-            aistudio.google.com, pick <code>gemini-2.0-flash</code>.
+            aistudio.google.com, pick <code>gemini-3.6-flash</code>.
           </li>
           <li>
             <strong>Groq</strong> and <strong>OpenRouter</strong> offer free API tiers — use the
