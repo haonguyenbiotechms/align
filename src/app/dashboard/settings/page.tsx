@@ -33,6 +33,7 @@ export default function SettingsPage() {
   const [s, setS] = useState<StoredSettings>({ provider: 'anthropic' })
   const [saved, setSaved] = useState(false)
   const [testing, setTesting] = useState(false)
+  const [customOpen, setCustomOpen] = useState(false)
   const [testResult, setTestResult] = useState<{ ok: boolean; msg: string } | null>(null)
 
   useEffect(() => {
@@ -42,6 +43,9 @@ export default function SettingsPage() {
 
   const provider = (s.provider ?? 'anthropic') as Provider
   const meta = PROVIDER_META[provider]
+  const paidModels = meta.models.filter((m) => !(meta.freeModels ?? []).includes(m))
+  const showCustom =
+    customOpen || (!!s.model && meta.models.length > 0 && !meta.models.includes(s.model))
 
   function update(patch: Partial<StoredSettings>) {
     setS((prev) => ({ ...prev, ...patch }))
@@ -102,6 +106,7 @@ export default function SettingsPage() {
             value={provider}
             onChange={(e) => {
               const p = e.target.value as Provider
+              setCustomOpen(false)
               update({ provider: p, model: DEFAULT_MODEL[p] })
             }}
           >
@@ -191,35 +196,52 @@ export default function SettingsPage() {
               placeholder={DEFAULT_MODEL[provider]}
             />
           ) : (
-            <select
-              style={inputStyle}
-              value={s.model || DEFAULT_MODEL[provider]}
-              onChange={(e) => update({ model: e.target.value })}
-            >
-              {meta.freeModels ? (
-                <>
-                  <optgroup label="Free tier — no card needed">
-                    {meta.freeModels.map((m) => (
-                      <option key={m} value={m}>{m}</option>
-                    ))}
-                  </optgroup>
-                  <optgroup label="Paid">
-                    {meta.models
-                      .filter((m) => !meta.freeModels!.includes(m))
-                      .map((m) => (
+            <>
+              <select
+                style={inputStyle}
+                value={showCustom ? '__custom__' : s.model || DEFAULT_MODEL[provider]}
+                onChange={(e) => {
+                  const v = e.target.value
+                  if (v === '__custom__') {
+                    setCustomOpen(true)
+                  } else {
+                    setCustomOpen(false)
+                    update({ model: v })
+                  }
+                }}
+              >
+                {meta.freeModels ? (
+                  <>
+                    <optgroup label="Free tier — no card needed">
+                      {meta.freeModels.map((m) => (
                         <option key={m} value={m}>{m}</option>
                       ))}
-                  </optgroup>
-                </>
-              ) : (
-                meta.models.map((m) => (
-                  <option key={m} value={m}>{m}</option>
-                ))
+                    </optgroup>
+                    {paidModels.length > 0 && (
+                      <optgroup label="Paid">
+                        {paidModels.map((m) => (
+                          <option key={m} value={m}>{m}</option>
+                        ))}
+                      </optgroup>
+                    )}
+                  </>
+                ) : (
+                  meta.models.map((m) => (
+                    <option key={m} value={m}>{m}</option>
+                  ))
+                )}
+                <option value="__custom__">Custom / other model…</option>
+              </select>
+              {showCustom && (
+                <input
+                  style={{ ...inputStyle, marginTop: 8 }}
+                  value={s.model ?? ''}
+                  onChange={(e) => update({ model: e.target.value })}
+                  placeholder="Exact model id from the provider"
+                  autoFocus
+                />
               )}
-              {s.model && !meta.models.includes(s.model) && (
-                <option value={s.model}>{s.model} (custom)</option>
-              )}
-            </select>
+            </>
           )}
         </div>
 

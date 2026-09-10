@@ -2,7 +2,17 @@ export default function InstructionsPage() {
   return (
     <div className="max-w-2xl mx-auto">
       <h1 className="text-2xl font-bold text-gray-900 mb-1">Instructions</h1>
-      <p className="text-sm text-gray-600 mb-8">How to get the most out of Align.</p>
+      <p className="text-sm text-gray-600 mb-2">How to get the most out of Align.</p>
+      <p className="text-xs mb-8">
+        <a
+          href="https://github.com/haonguyenbiotechms/align"
+          target="_blank"
+          rel="noreferrer"
+          className="text-indigo-600 font-medium"
+        >
+          ↗ Project &amp; source code on GitHub
+        </a>
+      </p>
 
       {/* Setup */}
       <div className="rounded-xl border border-indigo-200 bg-indigo-50/40 p-6 mb-6">
@@ -23,7 +33,7 @@ export default function InstructionsPage() {
           {[
             { step: '1', text: 'Choose a Provider from the dropdown.' },
             { step: '2', text: 'Paste your API key (or, for a local model, fill in the Base URL instead).' },
-            { step: '3', text: 'Leave Model on the suggested default, or type another the provider supports.' },
+            { step: '3', text: 'Leave Model on the default, or pick another from the dropdown — choose “Custom…” for a model that is not listed.' },
             { step: '4', text: 'Click Save, then Test connection. A green "Connected" message means you are ready.' },
             { step: '5', text: 'If the test fails, the message tells you what to fix (wrong key, wrong model name, provider unreachable).' },
           ].map(({ step, text }) => (
@@ -85,10 +95,13 @@ export default function InstructionsPage() {
         </div>
 
         <p className="text-xs text-gray-500 leading-relaxed mt-4">
-          You can change provider or key any time in Settings. Prefer a config file? Copy
-          <span className="font-mono"> .env.example</span> to <span className="font-mono">.env.local</span>
-          and fill in <span className="font-mono">AI_PROVIDER</span> / <span className="font-mono">AI_API_KEY</span> /
-          <span className="font-mono">AI_MODEL</span> &mdash; Settings overrides it when both are present.
+          You can change provider or key any time in Settings. Prefer a config file? Copy{' '}
+          <span className="font-mono">.env.example</span> to{' '}
+          <span className="font-mono">.env.local</span> and fill in{' '}
+          <span className="font-mono">AI_PROVIDER</span> /{' '}
+          <span className="font-mono">AI_API_KEY</span> /{' '}
+          <span className="font-mono">AI_MODEL</span> &mdash; Settings overrides it when both are
+          present.
         </p>
       </div>
 

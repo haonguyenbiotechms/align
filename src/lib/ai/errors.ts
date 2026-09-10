@@ -21,7 +21,7 @@ export function friendlyAiError(err: unknown): string {
     low.includes('404') ||
     low.includes('unknown model')
   ) {
-    return 'That model name is not available for the selected provider. Pick another in Settings.'
+    return 'The provider did not recognize that model name. Open Settings and choose another, or check the provider’s current model list.'
   }
   if (
     low.includes('rate limit') ||

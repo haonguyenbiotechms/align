@@ -45,16 +45,11 @@ export const PROVIDER_META: Record<Provider, ProviderMeta> = {
     blurb: 'Has a real free tier (rate-limited). Best option if you have no budget.',
     keyUrl: 'https://aistudio.google.com/apikey',
     keyLabel: 'aistudio.google.com',
-    // Naming follows Google's <version>-<tier> pattern; check aistudio.google.com
-    // for exactly which are live. The Model field is free-text, so any works.
-    models: [
-      'gemini-3.8-flash', 'gemini-3.7-flash', 'gemini-3.6-flash',
-      'gemini-3.8-pro', 'gemini-3.8-flash-lite',
-      'gemini-3.7-pro', 'gemini-3.7-flash-lite',
-      'gemini-3.6-pro', 'gemini-3.6-flash-lite',
-    ],
+    // Only models confirmed to exist are listed; use "Custom…" in the dropdown
+    // for a Pro / preview model, and check aistudio.google.com for the exact id.
+    models: ['gemini-3.8-flash', 'gemini-3.7-flash', 'gemini-3.6-flash'],
     freeModels: ['gemini-3.8-flash', 'gemini-3.7-flash', 'gemini-3.6-flash'],
-    freeTier: 'Free tier: the Flash models (3.8 / 3.7 / 3.6) — no card required.',
+    freeTier: 'These Flash models run on the free tier — no card required.',
   },
   'openai-compatible': {
     label: 'OpenAI-compatible / Local',
