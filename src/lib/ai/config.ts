@@ -19,6 +19,8 @@ type ProviderMeta = {
   keyUrl: string
   keyLabel: string
   models: string[]
+  /** Subset of `models` usable on the provider's free tier. */
+  freeModels?: string[]
   needsBaseURL?: boolean
   freeTier?: string
 }
@@ -46,11 +48,13 @@ export const PROVIDER_META: Record<Provider, ProviderMeta> = {
     // Naming follows Google's <version>-<tier> pattern; check aistudio.google.com
     // for exactly which are live. The Model field is free-text, so any works.
     models: [
-      'gemini-3.8-pro', 'gemini-3.8-flash', 'gemini-3.8-flash-lite',
-      'gemini-3.7-pro', 'gemini-3.7-flash', 'gemini-3.7-flash-lite',
-      'gemini-3.6-pro', 'gemini-3.6-flash', 'gemini-3.6-flash-lite',
+      'gemini-3.8-flash', 'gemini-3.7-flash', 'gemini-3.6-flash',
+      'gemini-3.8-pro', 'gemini-3.8-flash-lite',
+      'gemini-3.7-pro', 'gemini-3.7-flash-lite',
+      'gemini-3.6-pro', 'gemini-3.6-flash-lite',
     ],
-    freeTier: 'Free tier available at aistudio.google.com — no card required.',
+    freeModels: ['gemini-3.8-flash', 'gemini-3.7-flash', 'gemini-3.6-flash'],
+    freeTier: 'Free tier: the Flash models (3.8 / 3.7 / 3.6) — no card required.',
   },
   'openai-compatible': {
     label: 'OpenAI-compatible / Local',

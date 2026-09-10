@@ -183,18 +183,44 @@ export default function SettingsPage() {
         {/* Model */}
         <div>
           <label style={labelStyle}>Model</label>
-          <input
-            style={inputStyle}
-            list="model-suggestions"
-            value={s.model ?? ''}
-            onChange={(e) => update({ model: e.target.value })}
-            placeholder={DEFAULT_MODEL[provider]}
-          />
-          <datalist id="model-suggestions">
-            {meta.models.map((m) => (
-              <option key={m} value={m} />
-            ))}
-          </datalist>
+          {provider === 'openai-compatible' ? (
+            <input
+              style={inputStyle}
+              value={s.model ?? ''}
+              onChange={(e) => update({ model: e.target.value })}
+              placeholder={DEFAULT_MODEL[provider]}
+            />
+          ) : (
+            <select
+              style={inputStyle}
+              value={s.model || DEFAULT_MODEL[provider]}
+              onChange={(e) => update({ model: e.target.value })}
+            >
+              {meta.freeModels ? (
+                <>
+                  <optgroup label="Free tier — no card needed">
+                    {meta.freeModels.map((m) => (
+                      <option key={m} value={m}>{m}</option>
+                    ))}
+                  </optgroup>
+                  <optgroup label="Paid">
+                    {meta.models
+                      .filter((m) => !meta.freeModels!.includes(m))
+                      .map((m) => (
+                        <option key={m} value={m}>{m}</option>
+                      ))}
+                  </optgroup>
+                </>
+              ) : (
+                meta.models.map((m) => (
+                  <option key={m} value={m}>{m}</option>
+                ))
+              )}
+              {s.model && !meta.models.includes(s.model) && (
+                <option value={s.model}>{s.model} (custom)</option>
+              )}
+            </select>
+          )}
         </div>
 
         {/* Demo mode */}
