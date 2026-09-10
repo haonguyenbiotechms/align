@@ -2,7 +2,17 @@ export default function InstructionsPage() {
   return (
     <div className="max-w-2xl mx-auto">
       <h1 className="text-2xl font-bold text-gray-900 mb-1">Instructions</h1>
-      <p className="text-sm text-gray-600 mb-8">How to get the most out of Align.</p>
+      <p className="text-sm text-gray-600 mb-2">How to get the most out of Align.</p>
+      <p className="text-xs mb-8">
+        <a
+          href="https://github.com/haonguyenbiotechms/align"
+          target="_blank"
+          rel="noreferrer"
+          className="text-indigo-600 font-medium"
+        >
+          ↗ Project &amp; source code on GitHub
+        </a>
+      </p>
 
       {/* Setup */}
       <div className="rounded-xl border border-indigo-200 bg-indigo-50/40 p-6 mb-6">
@@ -17,13 +27,21 @@ export default function InstructionsPage() {
           sidebar and pick one of the paths below.
         </p>
         <p className="text-xs text-gray-500 leading-relaxed mb-4">
-          <strong>Gemini, Ollama, Groq and OpenRouter</strong> allow browser use with no caveats.
-          <strong> OpenAI and Anthropic</strong> label direct-from-browser use as &ldquo;not
+          <strong>Gemini, Ollama, Groq and OpenRouter</strong> allow browser use with no caveats.{' '}
+          <strong>OpenAI and Anthropic</strong> label direct-from-browser use as &ldquo;not
           recommended&rdquo; &mdash; for a solo user with their own key the practical risk is small
-          (details in the notice you saw on first visit). If you&apos;d rather your key not sit in
-          a browser at all, run the <strong>local version</strong> instead:{' '}
-          <span className="font-mono">npm run dev</span> from the project code &mdash; see the
-          README.
+          (details in the notice you saw on first visit). If you&apos;d rather your key not sit in a
+          browser at all, run the <strong>local version</strong> instead:{' '}
+          <span className="font-mono">npm run dev</span> from the project code &mdash; see the{' '}
+          <a
+            href="https://github.com/haonguyenbiotechms/align"
+            target="_blank"
+            rel="noreferrer"
+            className="text-indigo-600 font-medium underline"
+          >
+            README on GitHub
+          </a>
+          .
         </p>
 
         <p className="text-sm font-medium text-gray-700 mb-2">
@@ -33,7 +51,7 @@ export default function InstructionsPage() {
           {[
             { step: '1', text: 'Choose a Provider from the dropdown.' },
             { step: '2', text: 'Paste your API key (or, for a local model, fill in the Base URL instead).' },
-            { step: '3', text: 'Leave Model on the suggested default, or type another the provider supports.' },
+            { step: '3', text: 'Leave Model on the default, or pick another from the dropdown — choose “Custom…” for a model that is not listed.' },
             { step: '4', text: 'Click Save, then Test connection. A green "Connected" message means you are ready.' },
             { step: '5', text: 'If the test fails, the message tells you what to fix (wrong key, wrong model name, provider unreachable).' },
           ].map(({ step, text }) => (
